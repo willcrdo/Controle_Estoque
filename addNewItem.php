@@ -1,0 +1,17 @@
+<?php
+	include_once 'database_estoque.php';
+	include_once 'peca.php';
+	$database = new Database();
+	$db = $database->getConnection();
+	$item = new Peca($db);
+        $item->codPeca = $_POST['codPeca'];
+        $item->nomePeca = $_POST['nomePeca'];
+        $item->descPeca = $_POST['descPeca'];
+        $item->qtdPeca = $_POST['qtdPeca'];
+
+	if($item->cadastroPeca()){
+		echo 'Peça cadastrada com sucesso!';
+	} else{
+		echo 'Nao foi possivel realizar o cadastro.';
+	}
+?>

@@ -11,7 +11,6 @@ include('verifica_conexao.php');
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Controle de estoque</title>
-        <link rel="icon" type="image/x-icon" href="assets/toolssolid.ico" /> 
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -36,7 +35,6 @@ include('verifica_conexao.php');
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConsulta">Consultar Estoque</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAdicionar">Adicionar</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemover">Remover</a></li>
-<!--                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
                     </ul>
                 </div>
@@ -46,21 +44,21 @@ include('verifica_conexao.php');
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Oportunidades</h2>
-                    <h3 class="section-subheading text-muted">Escolha aqui o seu destino</h3>
+                    <h2 class="section-heading text-uppercase">Bem-vindo!</h2>
+                    <h3 class="section-subheading text-muted">Escolha qual a sua ação</h3>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1" onclick="getInfo()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalCadPeca" onclick="getInfo()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/informatica.jpg" alt="..." />
+                                <img class="img-fluid" src="img/addItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Cadastrar peças</div>
+                                <div class="portfolio-caption-heading">Cadastro de peças</div>
                                 <div class="portfolio-caption-subheading text-muted">Cadastro de novas peças</div>
                             </div>
                         </div>
@@ -68,41 +66,41 @@ include('verifica_conexao.php');
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 2-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2" onclick="getConstr()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAddEstoque" onclick="getConstr()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/construcao-civil.jpg" alt="..." />
+                                <img class="img-fluid" src="img/addItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Adicionar estoque</div>
-                                <div class="portfolio-caption-subheading text-muted">Adicionar quantidades de peça no estoque</div>
+                                <div class="portfolio-caption-heading">Adicionar</div>
+                                <div class="portfolio-caption-subheading text-muted">Adicionar peças ao estoque</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3" onclick="getAuto()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalDelEstoque" onclick="getAuto()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/automotivo.jpg" alt="..." />
+                                <img class="img-fluid" src="img/removeItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Remover estoque</div>
-                                <div class="portfolio-caption-subheading text-muted">Remover quantidade de peças no estoque</div>
+                                <div class="portfolio-caption-heading">Remover</div>
+                                <div class="portfolio-caption-subheading text-muted">Remover peças ao estoque</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <!-- Portfolio item 4-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4" onclick="getEletrodom()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalConEstoque" onclick="getEletrodom()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
-                                <img class="img-fluid" src="assets/img/portfolio/eletrodomesticos2.jpg" alt="..." />
+                                <img class="img-fluid" src="img/search.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Consultar estoque</div>
@@ -180,74 +178,60 @@ include('verifica_conexao.php');
         </script>
         <!-- Portfolio Modals-->
         <!-- Portfolio item 1 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalCadPeca" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-12">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Informática</h2>
+                                    <h2 class="text-uppercase">Cadastro de peças</h2>
                                     
-                                    <p class="item-intro text-muted">Aqui você encontra profissionais na área de informática e tecnologia</p>
-                                    <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="informatica" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-3 justify-content-center">        
-                                            <script type="text/javascript">
-                                                function getInfo() {
-
-                                                    $.ajax({
-                                                        dataType:"json",
-                                                        url:"getInfo.php", 
-                                                        type: "GET",
-                                                        success:function(result){
-
-                                                            if (result.mensagem == "Nenhum prestador encontrado") {
-                                                                `
-                                                                <div>
-                                                                    ${document.getElementById("informatica").innerHTML = result.mensagem }
-                                                                </div>
-                                                                `
-
-                                                            } else {
-
-                                                                console.log(result.mensagem);
-                                                                retornoObj = JSON.stringify(result);
-                                                                retornoTxt = JSON.parse(retornoObj);
-                                                                cliArray = retornoTxt.body;
-                                                                console.log(cliArray);
-                                                                varInfo = "";
-                                                                cont = 0;
-                                                                
-                                                                for(let i in cliArray) {
-                                                                    varInfo +=
-                                                                    `
-                                                                    <div class="col-lg-4 mb-5">
-                                                                        <div class="card h-100 shadow border-0">
-                                                                            <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nome']}</h5>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['desc_serv']}</p>
-                                                                            </div>
-                                                                            <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
-                                                                                <div class="small">
-                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telefone']}</div>
-                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celular']}</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    `;
-                                                                }
-                                                                document.getElementById("informatica").innerHTML = varInfo;
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-                                        </div>
+                                    <p class="item-intro text-muted">Cadastro de novas peças no estoque</p>
+                                    <div class="container px-5 my-5">
+                                        <form id="CadNewItemForm" method="post" action="home.php">
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="codPeca" name="codPeca" type="text" placeholder="codPeca" required/>
+                                                <label for="codPeca">Código da peça</label>
+                                                <div class="invalid-feedback">Informe o código da peça</div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="nomePeca" name="nomePeca" type="text" placeholder="nomePeca"required/>
+                                                <label for="nomePeca">Nome da peça</label>
+                                                <div class="invalid-feedback">Informe o código da peça</div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <textarea class="form-control" id="descPeca" name="descPeca" type="text" value="" placeholder="Descrição da peça" style="height: 10rem;" required></textarea>
+                                                <label for="descPeca">Descrição da peça</label>
+                                                <div class="invalid-feedback">Insira uma descrição para a peça</div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="qtdPeca" name="qtdPeca" type="text" placeholder="qtdPeca" required/>
+                                                <label for="qtdPeca">Quantidade</label>
+                                                <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <input class="btn btn-primary btn-lg" id="submitCadNewItem" name ="submitCadNewItem" value="Cadastrar" type="submit" onclick="cadNewItem()">
+                                                <script type="text/javascript" >
+                                                    function cadNewItem() {
+                                                        $.ajax({
+                                                            //METODO DE ENVIO
+                                                            type: "POST",
+                                                            //URL PARA QUAL OS DADOS SERÃO ENVIADOS
+                                                            url: "/addNewItem.php",
+                                                            //DADOS QUE SERÃO ENVIADOS
+                                                            data: $("#CadNewItemForm").serialize(),
+                                                            //TIPOS DE DADOS QUE O AJAX TRATA
+                                                            dataType: "json",
+                                                            success: function(){
+                                                            }                                                            
+                                                        });
+                                                    }
+                                                </script>
+                                            </div>
+                                        </form>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -261,10 +245,10 @@ include('verifica_conexao.php');
             </div>
         </div>
         <!-- Portfolio item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalAddEstoque" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -275,11 +259,11 @@ include('verifica_conexao.php');
                                     <div class="container px-4 px-lg-5 mt-5">
                                         <div id="construcao" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
                                             <script type="text/javascript">
-                                                function getConstr() {
+                                                function getAll() {
 
                                                     $.ajax({
                                                         dataType:"json",
-                                                        url:"getConstr.php", 
+                                                        url:"getAll.php", 
                                                         type: "GET",
                                                         success:function(result){
 
@@ -339,10 +323,10 @@ include('verifica_conexao.php');
             </div>
         </div>
         <!-- Portfolio item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalDelEstoque" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -416,10 +400,10 @@ include('verifica_conexao.php');
             </div>
         </div>
         <!-- Portfolio item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalConEstoque" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -492,165 +476,11 @@ include('verifica_conexao.php');
                 </div>
             </div>
         </div>
-        <!-- Portfolio item 5 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Eletroportáteis</h2>
-                                    <p class="item-intro text-muted">Aqui você encontra os profissionais da área de eletroportáteis.</p>
-                                    <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="eletroportateis" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
-                                            <script type="text/javascript">
-                                                function getEletropor() {
-
-                                                    $.ajax({
-                                                        dataType:"json",
-                                                        url:"getEletropor.php", 
-                                                        type: "GET",
-                                                        success:function(result){
-
-                                                            if (result.mensagem == "Nenhum prestador encontrado") {
-                                                                `
-                                                                <div>
-                                                                    ${document.getElementById("eletroportateis").innerHTML = result.mensagem }
-                                                                </div>
-                                                                `
-
-                                                            } else {
-
-                                                                retornoObj = JSON.stringify(result);
-                                                                retornoTxt = JSON.parse(retornoObj);
-                                                                cliArray = retornoTxt.body;
-                                                                varInfo = "";
-                                                                
-                                                                for(let i in cliArray) {
-                                                                    varInfo +=
-                                                                    `
-                                                                    <div class="col-lg-4 mb-5">
-                                                                        <div class="card h-100 shadow border-0">
-                                                                            <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nome']}</h5>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['desc_serv']}</p>
-                                                                            </div>
-                                                                            <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
-                                                                                <div class="small">
-                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telefone']}</div>
-                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celular']}</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    `;    
-                                                                }
-                                                                document.getElementById("eletroportateis").innerHTML = varInfo;
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-times me-1"></i>
-                                        Fechar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio item 6 modal popup-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Transportes</h2>
-                                    <p class="item-intro text-muted">Aqui você encontra os profissionais da área de transportes.</p>
-                                    <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="transportes" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
-                                            <script type="text/javascript">
-                                                function getTrans() {
-
-                                                    $.ajax({
-                                                        dataType:"json",
-                                                        url:"getTrans.php", 
-                                                        type: "GET",
-                                                        success:function(result){
-
-                                                            if (result.mensagem == "Nenhum prestador encontrado") {
-                                                                `
-                                                                <div>
-                                                                    ${document.getElementById("transportes").innerHTML = result.mensagem }
-                                                                </div>
-                                                                `
-
-                                                            } else {
-
-                                                                retornoObj = JSON.stringify(result);
-                                                                retornoTxt = JSON.parse(retornoObj);
-                                                                cliArray = retornoTxt.body;
-                                                                varInfo = "";
-                                                                
-                                                                for(let i in cliArray) {
-                                                                    varInfo +=
-                                                                    `
-                                                                    <div class="col-lg-4 mb-5">
-                                                                        <div class="card h-100 shadow border-0">
-                                                                            <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nome']}</h5>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['desc_serv']}</p>
-                                                                            </div>
-                                                                            <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
-                                                                                <div class="small">
-                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telefone']}</div>
-                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celular']}</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    `;    
-                                                                }
-                                                                document.getElementById("transportes").innerHTML = varInfo;
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
-                                        <i class="fas fa-times me-1"></i>
-                                        Fechar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Portfolio item 7 modal popup-->
         <div class="portfolio-modal modal fade" id="portfolioModal7" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
@@ -727,7 +557,7 @@ include('verifica_conexao.php');
         <div class="portfolio-modal modal fade" id="modalCadastroCliente" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
@@ -735,7 +565,7 @@ include('verifica_conexao.php');
                                     <h2 class="text-uppercase">Cadastre-se!</h2>
                                     <p class="item-intro text-muted">E tenha acesso aos melhores profissionais da sua região</p>
                                     <div class="container px-5 my-5">
-                                        <form id="CadastroCliForm" method="post" action="redirect.php">
+                                        <form id="CadastroCliForm" method="post" action="home.php">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="nomeCli" name="nomeCli" type="text" placeholder="Nome" required/>
                                                 <label for="nomeCli">Nome</label>
@@ -789,7 +619,7 @@ include('verifica_conexao.php');
         <div class="portfolio-modal modal fade" id="modalCadastroPrestador" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
@@ -797,7 +627,7 @@ include('verifica_conexao.php');
                                     <h2 class="text-uppercase">Cadastre-se!</h2>
                                     <p class="item-intro text-muted">E forneça os melhores serviços da sua região</p>
                                     <div class="container px-5 my-5">
-                                        <form id="CadastroPresForm" method="post" action="redirect.php">
+                                        <form id="CadastroPresForm" method="post" action="home.php">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="nomePres" name="nomePres" type="text" placeholder="Nome" value="" required/>
                                                 <label for="nomePres">Nome</label>
@@ -870,7 +700,7 @@ include('verifica_conexao.php');
         <div class="portfolio-modal modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
