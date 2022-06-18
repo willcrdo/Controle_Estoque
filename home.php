@@ -32,9 +32,10 @@ include('verifica_conexao.php');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConsulta">Consultar Estoque</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConsulta">Nova peça</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAdicionar">Adicionar</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemover">Remover</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConsulta">Consultar estoque</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
                     </ul>
                 </div>
@@ -58,7 +59,7 @@ include('verifica_conexao.php');
                                 <img class="img-fluid" src="img/addItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Cadastro de peças</div>
+                                <div class="portfolio-caption-heading">Nova peça</div>
                                 <div class="portfolio-caption-subheading text-muted">Cadastro de novas peças</div>
                             </div>
                         </div>
@@ -66,7 +67,7 @@ include('verifica_conexao.php');
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 2-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAddEstoque" onclick="getConstr()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAddItem">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -81,7 +82,7 @@ include('verifica_conexao.php');
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalDelEstoque" onclick="getAuto()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalRemItem" onclick="getAuto()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -96,7 +97,7 @@ include('verifica_conexao.php');
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <!-- Portfolio item 4-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalConEstoque" onclick="getEletrodom()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalConEstoque" onclick="getEstoque()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -109,52 +110,6 @@ include('verifica_conexao.php');
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <!-- Contact-->
-        <section class="page-section" id="contact">
-            <div class="container">
-                <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Cadastre-se</h2>
-                    <h3 class="section-subheading text-muted">Faça o seu cadastro e conecte-se com pessoas da sua região.</h3>
-                </div>
-                
-                <form id="cadastroForm">
-                    <div class="row align-items-stretch mb-5">
-                        <div class="col-md-6 text-center">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalCadastroCliente">
-                                <button class="btn btn-primary btn-xl text-uppercase" type="button">
-                                    Sou Cliente
-                                </button>
-                            </a>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalCadastroPrestador">
-                                <button class="btn btn-primary btn-xl text-uppercase"  type="button">
-                                    Sou Prestador
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="text-center">
-<!--                     <h2 class="section-heading text-uppercase">Cadastre-se</h2> -->
-                    <h3 class="section-subheading text-muted">Já é cadastrado? Faça o seu <a class="portfolio-link" data-bs-toggle="modal" href="#modalLogin">login</a>.</h3>
-                    </div>
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center text-white mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br />
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-<!--                     <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Cadastrar</button></div> -->
-                </form>
             </div>
         </section>
         <!-- Footer-->
@@ -176,8 +131,8 @@ include('verifica_conexao.php');
         </footer>
     
         </script>
-        <!-- Portfolio Modals-->
-        <!-- Portfolio item 1 modal popup-->
+        <!-- Modais-->
+        <!-- Modal cadastro de peças-->
         <div class="portfolio-modal modal fade" id="modalCadPeca" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -187,7 +142,7 @@ include('verifica_conexao.php');
                             <div class="col-lg-12">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Cadastro de peças</h2>
+                                    <h2 class="text-uppercase">Nova peça</h2>
                                     
                                     <p class="item-intro text-muted">Cadastro de novas peças no estoque</p>
                                     <div class="container px-5 my-5">
@@ -245,7 +200,7 @@ include('verifica_conexao.php');
             </div>
         </div>
         <!-- Portfolio item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="modalAddEstoque" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -254,62 +209,42 @@ include('verifica_conexao.php');
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Construção Civil</h2>
-                                    <p class="item-intro text-muted">Aqui você encontra profissionais da área de construção civil.</p>
-                                    <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="construcao" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
-                                            <script type="text/javascript">
-                                                function getAll() {
-
-                                                    $.ajax({
-                                                        dataType:"json",
-                                                        url:"getAll.php", 
-                                                        type: "GET",
-                                                        success:function(result){
-
-                                                            if (result.mensagem == "Nenhum prestador encontrado") {
-                                                                `
-                                                                <div>
-                                                                    ${document.getElementById("construcao").innerHTML = result.mensagem }
-                                                                </div>
-                                                                `
-
-                                                            } else {
-
-                                                                retornoObj = JSON.stringify(result);
-                                                                retornoTxt = JSON.parse(retornoObj);
-                                                                cliArray = retornoTxt.body;
-                                                                varInfo = "";
-                                                                cont = 0;
-                                                                
-                                                                for(let i in cliArray) {
-                                                                    varInfo +=
-                                                                    `
-                                                                    <div class="col-lg-4 mb-5">
-                                                                        <div class="card h-100 shadow border-0">
-                                                                            <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nome']}</h5>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['desc_serv']}</p>
-                                                                            </div>
-                                                                            <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
-                                                                                <div class="small">
-                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telefone']}</div>
-                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celular']}</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    `;
-                                                                }
-                                                                document.getElementById("construcao").innerHTML = varInfo;
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-                                        </div>
+                                    <h2 class="text-uppercase">Adicionar</h2>
+                                    
+                                    <p class="item-intro text-muted">Adicionar peças ao estoque</p>
+                                    <div class="container px-5 my-5">
+                                        <form id="AddItemForm" method="post" action="home.php">
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="codPeca" name="codPeca" type="text" placeholder="codPeca" required/>
+                                                <label for="codPeca">Código da peça</label>
+                                                <div class="invalid-feedback">Informe o código da peça</div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="qtdPeca" name="qtdPeca" type="text" placeholder="qtdPeca" required/>
+                                                <label for="qtdPeca">Quantidade</label>
+                                                <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <input class="btn btn-primary btn-lg" id="submitAddItem" name ="submitAddItem" value="Adicionar" type="submit" onclick="addItem()">
+                                                <script type="text/javascript" >
+                                                    function addItem() {
+                                                        $.ajax({
+                                                            //METODO DE ENVIO
+                                                            type: "POST",
+                                                            //URL PARA QUAL OS DADOS SERÃO ENVIADOS
+                                                            url: "/addItem.php",
+                                                            //DADOS QUE SERÃO ENVIADOS
+                                                            data: $("#AddItemForm").serialize(),
+                                                            //TIPOS DE DADOS QUE O AJAX TRATA
+                                                            dataType: "json",
+                                                            success: function(){
+                                                                alert("Item adicionado com sucesso!");
+                                                            }                                                            
+                                                        });
+                                                    }
+                                                </script>
+                                            </div>
+                                        </form>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -323,7 +258,7 @@ include('verifica_conexao.php');
             </div>
         </div>
         <!-- Portfolio item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="modalDelEstoque" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalRemItem" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -332,61 +267,42 @@ include('verifica_conexao.php');
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Automotivo</h2>
-                                    <p class="item-intro text-muted">Aqui você encontra os profissionais da área automotiva.</p>
-                                    <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="automotivo" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
-                                            <script type="text/javascript">
-                                                function getAuto() {
-
-                                                    $.ajax({
-                                                        dataType:"json",
-                                                        url:"getAuto.php", 
-                                                        type: "GET",
-                                                        success:function(result){
-
-                                                            if (result.mensagem == "Nenhum prestador encontrado") {
-                                                                `
-                                                                <div>
-                                                                    ${document.getElementById("automotivo").innerHTML = result.mensagem }
-                                                                </div>
-                                                                `
-
-                                                            } else {
-                                                                retornoObj = JSON.stringify(result);
-                                                                retornoTxt = JSON.parse(retornoObj);
-                                                                cliArray = retornoTxt.body;
-                                                                console.log(cliArray);
-                                                                varInfo = "";
-                                                                
-                                                                for(let i in cliArray) {
-                                                                    varInfo +=
-                                                                    `
-                                                                    <div class="col-lg-4 mb-5">
-                                                                        <div class="card h-100 shadow border-0">
-                                                                            <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nome']}</h5>
-                                                                            </div>
-                                                                            <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['desc_serv']}</p>
-                                                                            </div>
-                                                                            <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
-                                                                                <div class="small">
-                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telefone']}</div>
-                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celular']}</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    `;  
-                                                                }
-                                                                document.getElementById("automotivo").innerHTML = varInfo;
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            </script>
-                                        </div>
+                                    <h2 class="text-uppercase">Remover</h2>
+                                    
+                                    <p class="item-intro text-muted">Remover peças do estoque</p>
+                                    <div class="container px-5 my-5">
+                                        <form id="RemItemForm" method="post" action="home.php">
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="codPeca" name="codPeca" type="text" placeholder="codPeca" required/>
+                                                <label for="codPeca">Código da peça</label>
+                                                <div class="invalid-feedback">Informe o código da peça</div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="qtdPeca" name="qtdPeca" type="text" placeholder="qtdPeca" required/>
+                                                <label for="qtdPeca">Quantidade</label>
+                                                <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <input class="btn btn-primary btn-lg" id="submitRemItem" name ="submitRemItem" value="Remover" type="submit" onclick="remItem()">
+                                                <script type="text/javascript" >
+                                                    function remItem() {
+                                                        $.ajax({
+                                                            //METODO DE ENVIO
+                                                            type: "POST",
+                                                            //URL PARA QUAL OS DADOS SERÃO ENVIADOS
+                                                            url: "/remItem.php",
+                                                            //DADOS QUE SERÃO ENVIADOS
+                                                            data: $("#RemItemForm").serialize(),
+                                                            //TIPOS DE DADOS QUE O AJAX TRATA
+                                                            dataType: "json",
+                                                            success: function(){
+                                                                alert("Item removido com sucesso!");
+                                                            }                                                            
+                                                        });
+                                                    }
+                                                </script>
+                                            </div>
+                                        </form>
                                     </div>
                                     <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
                                         <i class="fas fa-times me-1"></i>
@@ -409,23 +325,23 @@ include('verifica_conexao.php');
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Eletrodomésticos</h2>
-                                    <p class="item-intro text-muted">Aqui você encontra os profissionais da área de eletrodomésticos. </p>
+                                    <h2 class="text-uppercase">Consultar estoque</h2>
+                                    <p class="item-intro text-muted"> Todas as peças cadastradas </p>
                                     <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="eletrodomesticos" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                        <div id="estoque" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
                                             <script type="text/javascript">
-                                                function getEletrodom() {
+                                                function getEstoque() {
 
                                                     $.ajax({
                                                         dataType:"json",
-                                                        url:"getEletrodom.php", 
+                                                        url:"getEstoque.php", 
                                                         type: "GET",
                                                         success:function(result){
 
-                                                            if (result.mensagem == "Nenhum prestador encontrado") {
+                                                            if (result.mensagem == "Nenhum item encontrado") {
                                                                 `
                                                                 <div>
-                                                                    ${document.getElementById("eletrodomesticos").innerHTML = result.mensagem }
+                                                                    ${document.getElementById("estoque").innerHTML = result.mensagem }
                                                                 </div>
                                                                 `
 
@@ -442,22 +358,22 @@ include('verifica_conexao.php');
                                                                     <div class="col-lg-4 mb-5">
                                                                         <div class="card h-100 shadow border-0">
                                                                             <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nome']}</h5>
+                                                                                <h5 class="fw-bold">${cliArray[i]['nomePeca']}</h5>
                                                                             </div>
                                                                             <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['desc_serv']}</p>
+                                                                                    <p class="card-text mb-0">${cliArray[i]['descPeca']}</p>
                                                                             </div>
                                                                             <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
                                                                                 <div class="small">
-                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telefone']}</div>
-                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celular']}</div>
+                                                                                    <div class="text-muted"><b>Código da peça:</b> ${cliArray[i]['codPeca']}</div>
+                                                                                    <div class="text-muted"><b>Quantidade:</b> ${cliArray[i]['qtdPeca']}</div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     `;   
                                                                 }
-                                                                document.getElementById("eletrodomesticos").innerHTML = varInfo;
+                                                                document.getElementById("estoque").innerHTML = varInfo;
                                                             }
                                                         }
                                                     });

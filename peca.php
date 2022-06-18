@@ -23,29 +23,20 @@
 		}
 
 
-		// Lista prestadores informatica 
-                public function getInfo(){
-                        $sqlQuery = "SELECT id_prest, nome, telefone, celular, mail, desc_serv FROM " . $this->db_cli . " where id_categoria = 1";
-                        $stmt = $this->conn->prepare($sqlQuery);
-                        $stmt->execute();
-                        return $stmt;
-                }
+		// Lista todas as pecas
+		public function getEstoque(){
+				$sqlQuery = "SELECT codPeca, nomePeca, descPeca, qtdPeca FROM " . $this->db_cli . "";
+				$stmt = $this->conn->prepare($sqlQuery);
+				$stmt->execute();
+				return $stmt;
+		}
 
-                // Lista prestadores Construcao civil 
-                public function getconstr(){
-                        $sqlQuery = "SELECT id_prest, nome, telefone, celular, mail, desc_serv FROM " . $this->db_cli . " where id_categoria = 2";
-                        $stmt = $this->conn->prepare($sqlQuery);
-                        $stmt->execute();
-                        return $stmt;
-                }
-                // Lista prestadores automotivo
-                public function getAuto(){
-                        $sqlQuery = "SELECT id_prest, nome, telefone, celular, mail, desc_serv FROM " . $this->db_cli . " where id_categoria = 3";
-                        $stmt = $this->conn->prepare($sqlQuery);
-                        $stmt->execute();
-                        return $stmt;
-                }
-
+		public function addItem(){
+			$sqlQuery = "SELECT qtdPeca FROM " . $this->db_cli . " where codPeca = ";
+			$stmt = $this->conn->prepare($sqlQuery);
+			$stmt->execute();
+			return $stmt;
+	}
 		// Cadastra Peca
 		public function cadastroPeca(){
 			$sqlQuery = "INSERT INTO ". $this->db_cli ." SET codPeca = :codPeca, nomePeca = :nomePeca, descPeca = :descPeca, qtdPeca = :qtdPeca";
@@ -98,33 +89,5 @@
                 }
                     return false;
                 }
-
-		// Atualiza celular
-		public function updateCelular(){
-			$sqlQuery = "UPDATE ". $this->db_cli ." SET celular = :celular WHERE id_prest = :id_prest";
-			$stmt = $this->conn->prepare($sqlQuery);
-			$this->celular=htmlspecialchars(strip_tags($this->celular));
-			$this->id_prest=htmlspecialchars(strip_tags($this->id_prest));
-
-			// Obtem os dados
-			$stmt->bindParam(":celular", $this->celular);
-			$stmt->bindParam(":id_prest", $this->id_prest);
-			if($stmt->execute()){
-				return true;
-			}
-				return false;
-		}
-
-		// Apaga Cliente
-		function deleteCliente(){
-			$sqlQuery = "DELETE FROM " . $this->db_cli . " WHERE id_prest = ?";
-			$stmt = $this->conn->prepare($sqlQuery);
-			$this->id_prest=htmlspecialchars(strip_tags($this->id_prest));
-			$stmt->bindParam(1, $this->id_prest);
-			if($stmt->execute()){
-				return true;
-			}
-				return false;
-			}
-		}
+	}
 ?>
