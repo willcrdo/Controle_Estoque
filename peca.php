@@ -6,11 +6,17 @@
 		private $db_cli = "peca";
  
 		// Colunas da base de dados
+		private $aspas = "'";
 		public $peca_id;
 		public $codPeca;
 		public $nomePeca;
 		public $descPeca;
 		public $qtdPeca;
+		public $qtdPecaAdd;
+		public $codPecaAdd;
+		public $qtdPecaRem;
+		public $codPecaRem;
+
 
 		// Conexao com a base de dados
 		public function __construct($db){$this->conn = $db;}
@@ -31,12 +37,9 @@
 				return $stmt;
 		}
 
-		public function addItem(){
-			$sqlQuery = "SELECT qtdPeca FROM " . $this->db_cli . " where codPeca = ";
-			$stmt = $this->conn->prepare($sqlQuery);
-			$stmt->execute();
-			return $stmt;
-	}
+		// Adiciona quantidade de peças já existentes no estoque
+
+	
 		// Cadastra Peca
 		public function cadastroPeca(){
 			$sqlQuery = "INSERT INTO ". $this->db_cli ." SET codPeca = :codPeca, nomePeca = :nomePeca, descPeca = :descPeca, qtdPeca = :qtdPeca";
@@ -65,7 +68,7 @@
 		public function getPeca(){
 			$sqlQuery = "SELECT codPeca, nomePeca, descPeca, qtdPeca FROM ". $this->db_cli ." WHERE codPeca = ? LIMIT 0,1";
 			$stmt = $this->conn->prepare($sqlQuery);
-			$stmt->bindParam(1, $this->id_prest);
+			$stmt->bindParam(1, $this->codPeca);
 			$stmt->execute();
 			$dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
 			$this->codPeca = $dataRow['codPeca'];
@@ -88,6 +91,37 @@
                     return true;
                 }
                     return false;
-                }
+            }
+
+			public function addItem(){
+				$sqlQuery = "UPDATE ". $this->db_cli ." SET qtdPeca = (:qtdPecaAdd + qtdPeca) WHERE codPeca = :codPecaAdd";
+				$stmt = $this->conn->prepare($sqlQuery);
+				$this->qtdPecaAdd=htmlspecialchars(strip_tags($this->qtdPecaAdd));
+				$this->codPecaAdd=htmlspecialchars(strip_tags($this->codPecaAdd));
+					
+				// Obtem os dados
+				$stmt->bindParam(":qtdPecaAdd", $this->qtdPecaAdd);
+				$stmt->bindParam(":codPecaAdd", $this->codPecaAdd);
+				if($stmt->execute()){
+					return true;
+				}
+					return false;
+			}
+
+			public function remItem(){
+				$sqlQuery = "UPDATE ". $this->db_cli ." SET qtdPeca = qtdPeca - :qtdPecaRem WHERE codPeca = :codPecaRem";
+				$stmt = $this->conn->prepare($sqlQuery);
+				$this->qtdPecaRem=htmlspecialchars(strip_tags($this->qtdPecaRem));
+				$this->codPecaRem=htmlspecialchars(strip_tags($this->codPecaRem));
+				$stmt->execute();
+	
+				// Obtem os dados
+				$stmt->bindParam(":qtdPecaRem", $this->qtdPecaRem);
+				$stmt->bindParam(":codPecaRem", $this->codPecaRem);
+				if($stmt->execute()){
+					return true;
+				}
+					return false;
+			}
 	}
 ?>

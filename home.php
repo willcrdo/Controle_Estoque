@@ -215,13 +215,13 @@ include('verifica_conexao.php');
                                     <div class="container px-5 my-5">
                                         <form id="AddItemForm" method="post" action="home.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="codPeca" name="codPeca" type="text" placeholder="codPeca" required/>
-                                                <label for="codPeca">Código da peça</label>
+                                                <input class="form-control" id="codPecaAdd" name="codPecaAdd" type="text" placeholder="codPeca" required/>
+                                                <label for="codPecaAdd">Código da peça</label>
                                                 <div class="invalid-feedback">Informe o código da peça</div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="qtdPeca" name="qtdPeca" type="text" placeholder="qtdPeca" required/>
-                                                <label for="qtdPeca">Quantidade</label>
+                                                <input class="form-control" id="qtdPecaAdd" name="qtdPecaAdd" type="text" placeholder="qtdPeca" required/>
+                                                <label for="qtdPecaAdd">Quantidade</label>
                                                 <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
                                             </div>
                                             <div class="d-grid">
@@ -238,7 +238,6 @@ include('verifica_conexao.php');
                                                             //TIPOS DE DADOS QUE O AJAX TRATA
                                                             dataType: "json",
                                                             success: function(){
-                                                                alert("Item adicionado com sucesso!");
                                                             }                                                            
                                                         });
                                                     }
@@ -273,13 +272,13 @@ include('verifica_conexao.php');
                                     <div class="container px-5 my-5">
                                         <form id="RemItemForm" method="post" action="home.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="codPeca" name="codPeca" type="text" placeholder="codPeca" required/>
-                                                <label for="codPeca">Código da peça</label>
+                                                <input class="form-control" id="codPecaRem" name="codPecaRem" type="text" placeholder="codPeca" required/>
+                                                <label for="codPecarRem">Código da peça</label>
                                                 <div class="invalid-feedback">Informe o código da peça</div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="qtdPeca" name="qtdPeca" type="text" placeholder="qtdPeca" required/>
-                                                <label for="qtdPeca">Quantidade</label>
+                                                <input class="form-control" id="qtdPecaRem" name="qtdPecaRem" type="text" placeholder="qtdPeca" required/>
+                                                <label for="qtdPecaRem">Quantidade</label>
                                                 <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
                                             </div>
                                             <div class="d-grid">

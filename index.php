@@ -22,17 +22,19 @@ session_start();
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <body id="page-top">
+    <section class="page-section bg-light" id="portfolio">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="justify-content-center">
                             <h2 class="text-uppercase">Entre</h2>
                             <p class="item-intro text-muted">Faça seu login.</p>
+
                             <form action="login.php" method="POST">
                                 <div class="form-floating mb-3">
-                                    <input name="usuario" class="form-control" id="usuario" type="text" value="" placeholder="Usuário(e-mail)" required />
-                                    <label for="usuario">E-mail</label>
-                                    <div class="invalid-feedback">Informe seu e-mail</div>
+                                    <input name="usuario" class="form-control" id="usuario" type="text" value="" placeholder="Usuário" required />
+                                    <label for="usuario">Usuário</label>
+                                    <div class="invalid-feedback">Informe seu usuário</div>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input name="senha" type="password" id="inputPassword" class="form-control" placeholder="Digite sua senha" required>
@@ -47,6 +49,7 @@ session_start();
                 </div>
             </div>
         </div>
+    </section>
         </script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
