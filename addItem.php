@@ -2,10 +2,10 @@
 	include_once 'database_estoque.php';
 	include_once 'peca.php';
 	$database = new Database();
-	$db = $database->getConnection();
+	$db = $database->getConnection(); 
 	$item = new Peca($db);
-        $item->codPeca = $_POST['codPecaAdd'];
-        $item->qtdPeca = $_POST['qtdPecaAdd'];
+        $item->codPecaAdd = $_POST['codPecaAdd'];
+        $item->qtdPecaAdd = $_POST['qtdPecaAdd'];
 
 	if($item->addItem()){
 		echo 'Quantidade adicionada com sucesso!';

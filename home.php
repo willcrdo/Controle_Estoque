@@ -25,17 +25,17 @@ include('verifica_conexao.php');
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand" href="#page-top"><i class="fas fa-tools"></i>Controle de estoque</a>
+                <a class="navbar-brand" href="#page-top"><i class="fas fa-scanner-keyboard"></i>Controle de estoque</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ms-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConsulta">Nova peça</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAdicionar">Adicionar</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemover">Remover</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConsulta">Consultar estoque</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalCadPeca">Nova peça</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAddItem">Adicionar</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemItem">Remover</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConEstoque">Consultar estoque</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
                     </ul>
                 </div>
@@ -215,12 +215,12 @@ include('verifica_conexao.php');
                                     <div class="container px-5 my-5">
                                         <form id="AddItemForm" method="post" action="home.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="codPecaAdd" name="codPecaAdd" type="text" placeholder="codPeca" required/>
+                                                <input class="form-control" id="codPecaAdd" name="codPecaAdd" type="text" placeholder="codPecaAdd" required/>
                                                 <label for="codPecaAdd">Código da peça</label>
                                                 <div class="invalid-feedback">Informe o código da peça</div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="qtdPecaAdd" name="qtdPecaAdd" type="text" placeholder="qtdPeca" required/>
+                                                <input class="form-control" id="qtdPecaAdd" name="qtdPecaAdd" type="text" placeholder="qtdPecaAdd" required/>
                                                 <label for="qtdPecaAdd">Quantidade</label>
                                                 <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
                                             </div>

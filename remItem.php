@@ -4,8 +4,8 @@
 	$database = new Database();
 	$db = $database->getConnection();
 	$item = new Peca($db);
-        $item->codPeca = $_POST['codPecaRem'];
-        $item->qtdPeca = $_POST['qtdPecaRem'];
+        $item->codPecaRem = $_POST['codPecaRem'];
+        $item->qtdPecaRem = $_POST['qtdPecaRem'];
 
 	if($item->remItem()){
 		echo 'Quantidade removida com sucesso!';

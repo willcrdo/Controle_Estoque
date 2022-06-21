@@ -1,7 +1,6 @@
 <?php
 	include_once 'database_estoque.php';
 	include_once 'peca.php';
-	$alerta = 0;
 	$database = new Database();
 	$db = $database->getConnection();
 	$item = new Peca($db);
