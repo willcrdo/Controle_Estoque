@@ -30,6 +30,17 @@ session_start();
                             <h2 class="text-uppercase">Entre</h2>
                             <p class="item-intro text-muted">Faça seu login.</p>
 
+                            <?php
+                            if(isset($_SESSION['nao_autenticado'])):
+                            ?>
+                            <div class="alert alert-danger" role="alert">
+                                <p> Usuário ou senha inválidos!</p>
+                            </div>
+                            <?php    
+                            endif;
+                            unset($_SESSION['nao_autenticado']);
+                            ?>
+                            
                             <form action="login.php" method="POST">
                                 <div class="form-floating mb-3">
                                     <input name="usuario" class="form-control" id="usuario" type="text" value="" placeholder="Usuário" required />

@@ -45,7 +45,9 @@ include('verifica_conexao.php');
         <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Bem-vindo!</h2>
+                    <div id="mensagem">
+                    </div>
+                    <h2 class="section-heading text-uppercase">Bem-vindo, <?php echo $_SESSION['usuario'] ?>!</h2>
                     <h3 class="section-subheading text-muted">Escolha qual a sua ação</h3>
                 </div>
                 <div class="row">

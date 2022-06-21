@@ -74,6 +74,10 @@
 			$stmt->bindParam(":codPecaAdd", $this->codPecaAdd);
 			$stmt->bindParam(":qtdPecaAdd", $this->qtdPecaAdd);
 			if($stmt->execute()){
+//				$sqlQuery2 = "SELECT qtdPeca FROM ". $this->db_cli ." WHERE codPeca = :codPecaAdd";
+//				$stmt2 = $this->conn->prepare($sqlQuery2);
+//				$stmt2->execute();
+//				$resultado = $stmt2; 
 				return true;
 			}
 				return false;

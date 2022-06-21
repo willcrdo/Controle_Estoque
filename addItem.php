@@ -8,8 +8,13 @@
         $item->qtdPecaAdd = $_POST['qtdPecaAdd'];
 
 	if($item->addItem()){
-		echo 'Quantidade adicionada com sucesso!';
+//		if($codPecaAdd != $resultado) {
+//			echo json_encode(array("mensagem" => "Inserido com sucesso"));
+//		} else {
+//			echo json_encode(array("mensagem" => "Falha ao inserir"));
+//		}
+		return true;		
 	} else{
-		echo 'Nao foi possivel adicionar o item.';
+		return false;
 	}
 ?>
