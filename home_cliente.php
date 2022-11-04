@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('verifica_conexao.php');
-include('verifica_perfil_adm.php');
+include('verifica_perfil_usr.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@ include('verifica_perfil_adm.php');
         <meta name="description" content="" />
         <meta name="author" content="" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <title>Controle de estoque</title>
+        <title>Controle de clientes</title>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -33,10 +33,10 @@ include('verifica_perfil_adm.php');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalCadPeca">Nova peça</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAddItem">Adicionar</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemItem">Remover</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConEstoque">Consultar estoque</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalCadCli">Novo cliente</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAddCli">Adicionar</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemCli">Remover</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConCliente">Consultar clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
                     </ul>
                 </div>
@@ -55,22 +55,22 @@ include('verifica_perfil_adm.php');
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalCadPeca" onclick="getInfo()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalCadCli">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <img class="img-fluid" src="img/addItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Nova peça</div>
-                                <div class="portfolio-caption-subheading text-muted">Cadastro de novas peças</div>
+                                <div class="portfolio-caption-heading">Novo cliente</div>
+                                <div class="portfolio-caption-subheading text-muted">Cadastro de novos clientes</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 2-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAddItem">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAddCli">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -85,7 +85,7 @@ include('verifica_perfil_adm.php');
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalRemItem" onclick="getAuto()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalRemCli">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
@@ -93,22 +93,22 @@ include('verifica_perfil_adm.php');
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Remover</div>
-                                <div class="portfolio-caption-subheading text-muted">Remover peças ao estoque</div>
+                                <div class="portfolio-caption-subheading text-muted">Remover cadastro do cliente</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <!-- Portfolio item 4-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalConEstoque" onclick="getEstoque()">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalConCliente" onclick="getClientes()">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <img class="img-fluid" src="img/search.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Consultar estoque</div>
-                                <div class="portfolio-caption-subheading text-muted">Consultar quantidade de peças no estoque</div>
+                                <div class="portfolio-caption-heading">Consultar clientes</div>
+                                <div class="portfolio-caption-subheading text-muted">Consultar cadastro dos clientes</div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@ include('verifica_perfil_adm.php');
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Univesp - PI Grupo 47 - Sala 2 - 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Univesp - PI Grupo 003 - Sala 006 - 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/univespoficial"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/univespoficial/"><i class="fab fa-facebook-f"></i></a>
@@ -136,7 +136,7 @@ include('verifica_perfil_adm.php');
         </script>
         <!-- Modais-->
         <!-- Modal cadastro de peças-->
-        <div class="portfolio-modal modal fade" id="modalCadPeca" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalCadCli" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -145,42 +145,47 @@ include('verifica_perfil_adm.php');
                             <div class="col-lg-12">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Nova peça</h2>
+                                    <h2 class="text-uppercase">Novo Cliente</h2>
                                     
-                                    <p class="item-intro text-muted">Cadastro de novas peças no estoque</p>
+                                    <p class="item-intro text-muted">Cadastro de novos clientes</p>
                                     <div class="container px-5 my-5">
-                                        <form id="CadNewItemForm" method="post" action="home.php">
+                                        <form id="CadClienteForm" method="post" action="home_cliente.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="codPeca" name="codPeca" type="text" placeholder="codPeca" required/>
-                                                <label for="codPeca">Código da peça</label>
-                                                <div class="invalid-feedback">Informe o código da peça</div>
+                                                <input class="form-control" id="nomeCli" name="nomeCli" type="text" placeholder="nomeCli" required/>
+                                                <label for="nomeCli">Nome do Cliente</label>
+                                                <div class="invalid-feedback">Informe o nome do cliente</div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="nomePeca" name="nomePeca" type="text" placeholder="nomePeca"required/>
-                                                <label for="nomePeca">Nome da peça</label>
-                                                <div class="invalid-feedback">Informe o código da peça</div>
+                                                <input class="form-control" id="endCli" name="endCli" type="text" placeholder="endCli"required/>
+                                                <label for="endCli">Endereço</label>
+                                                <div class="invalid-feedback">Informe o endereço do cliente</div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <textarea class="form-control" id="descPeca" name="descPeca" type="text" value="" placeholder="Descrição da peça" style="height: 10rem;" required></textarea>
-                                                <label for="descPeca">Descrição da peça</label>
-                                                <div class="invalid-feedback">Insira uma descrição para a peça</div>
+                                                <input class="form-control" id="numeroEndCli" name="numeroEndCli" type="text" placeholder="numeroEndCli" required/>
+                                                <label for="numeroEndCli">Nº</label>
+                                                <div class="invalid-feedback">Informe o número do endereço</div>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="qtdPeca" name="qtdPeca" type="text" placeholder="qtdPeca" required/>
-                                                <label for="qtdPeca">Quantidade</label>
-                                                <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
+                                                <input class="form-control" id="telCli" name="telCli" type="text" placeholder="telCli" required/>
+                                                <label for="telCli">Telefone</label>
+                                                <div class="invalid-feedback">Informe o número do telefone</div>
+                                            </div>
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="celCli" name="celCli" type="text" placeholder="celCli" required/>
+                                                <label for="celCli">Celular</label>
+                                                <div class="invalid-feedback">Informe o número do celular</div>
                                             </div>
                                             <div class="d-grid">
-                                                <input class="btn btn-primary btn-lg" id="submitCadNewItem" name ="submitCadNewItem" value="Cadastrar" type="submit" onclick="cadNewItem()">
+                                                <input class="btn btn-primary btn-lg" id="submitCadNewItem" name ="submitCadNewItem" value="Cadastrar" type="submit" onclick="cadastroCliente()">
                                                 <script type="text/javascript" >
-                                                    function cadNewItem() {
+                                                    function cadastroCliente() {
                                                         $.ajax({
                                                             //METODO DE ENVIO
                                                             type: "POST",
                                                             //URL PARA QUAL OS DADOS SERÃO ENVIADOS
-                                                            url: "/addNewItem.php",
+                                                            url: "/addCliente.php",
                                                             //DADOS QUE SERÃO ENVIADOS
-                                                            data: $("#CadNewItemForm").serialize(),
+                                                            data: $("#CadClienteForm").serialize(),
                                                             //TIPOS DE DADOS QUE O AJAX TRATA
                                                             dataType: "json",
                                                             success: function(){
@@ -203,7 +208,7 @@ include('verifica_perfil_adm.php');
             </div>
         </div>
         <!-- Portfolio item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalAddCli" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -216,7 +221,7 @@ include('verifica_perfil_adm.php');
                                     
                                     <p class="item-intro text-muted">Adicionar peças ao estoque</p>
                                     <div class="container px-5 my-5">
-                                        <form id="AddItemForm" method="post" action="home.php">
+                                        <form id="AddCliForm" method="post" action="home_cliente.php">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="codPecaAdd" name="codPecaAdd" type="text" placeholder="codPecaAdd" required/>
                                                 <label for="codPecaAdd">Código da peça</label>
@@ -228,16 +233,16 @@ include('verifica_perfil_adm.php');
                                                 <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
                                             </div>
                                             <div class="d-grid">
-                                                <input class="btn btn-primary btn-lg" id="submitAddItem" name ="submitAddItem" value="Adicionar" type="submit" onclick="addItem()">
+                                                <input class="btn btn-primary btn-lg" id="submitAddCli" name ="submitAddCli" value="Adicionar" type="submit" onclick="AddCli()">
                                                 <script type="text/javascript" >
-                                                    function addItem() {
+                                                    function AddCli() {
                                                         $.ajax({
                                                             //METODO DE ENVIO
                                                             type: "POST",
                                                             //URL PARA QUAL OS DADOS SERÃO ENVIADOS
-                                                            url: "/addItem.php",
+                                                            url: "/AddCli.php",
                                                             //DADOS QUE SERÃO ENVIADOS
-                                                            data: $("#AddItemForm").serialize(),
+                                                            data: $("#AddCliForm").serialize(),
                                                             //TIPOS DE DADOS QUE O AJAX TRATA
                                                             dataType: "json",
                                                             success: function(){
@@ -260,7 +265,7 @@ include('verifica_perfil_adm.php');
             </div>
         </div>
         <!-- Portfolio item 3 modal popup-->
-        <div class="portfolio-modal modal fade" id="modalRemItem" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalRemCli" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -271,30 +276,25 @@ include('verifica_perfil_adm.php');
                                     <!-- Project details-->
                                     <h2 class="text-uppercase">Remover</h2>
                                     
-                                    <p class="item-intro text-muted">Remover peças do estoque</p>
+                                    <p class="item-intro text-muted">Remover cadastro do cliente</p>
                                     <div class="container px-5 my-5">
-                                        <form id="RemItemForm" method="post" action="home.php">
+                                        <form id="RemCliForm" method="post" action="home_cliente.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="codPecaRem" name="codPecaRem" type="text" placeholder="codPeca" required/>
-                                                <label for="codPecarRem">Código da peça</label>
-                                                <div class="invalid-feedback">Informe o código da peça</div>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="qtdPecaRem" name="qtdPecaRem" type="text" placeholder="qtdPeca" required/>
-                                                <label for="qtdPecaRem">Quantidade</label>
-                                                <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
+                                                <input class="form-control" id="codCliRem" name="codCliRem" type="text" placeholder="codCliRem" required/>
+                                                <label for="codCliRem">Código do cliente</label>
+                                                <div class="invalid-feedback">Informe o código do cliente</div>
                                             </div>
                                             <div class="d-grid">
-                                                <input class="btn btn-primary btn-lg" id="submitRemItem" name ="submitRemItem" value="Remover" type="submit" onclick="remItem()">
+                                                <input class="btn btn-primary btn-lg" id="submitRemCli" name ="submitRemCli" value="Remover" type="submit" onclick="RemCliente()">
                                                 <script type="text/javascript" >
-                                                    function remItem() {
+                                                    function RemCliente() {
                                                         $.ajax({
                                                             //METODO DE ENVIO
                                                             type: "POST",
                                                             //URL PARA QUAL OS DADOS SERÃO ENVIADOS
-                                                            url: "/remItem.php",
+                                                            url: "/remCliente.php",
                                                             //DADOS QUE SERÃO ENVIADOS
-                                                            data: $("#RemItemForm").serialize(),
+                                                            data: $("#RemCliForm").serialize(),
                                                             //TIPOS DE DADOS QUE O AJAX TRATA
                                                             dataType: "json",
                                                             success: function(){
@@ -318,7 +318,7 @@ include('verifica_perfil_adm.php');
             </div>
         </div>
         <!-- Portfolio item 4 modal popup-->
-        <div class="portfolio-modal modal fade" id="modalConEstoque" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="portfolio-modal modal fade" id="modalConCliente" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -327,23 +327,23 @@ include('verifica_perfil_adm.php');
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Consultar estoque</h2>
-                                    <p class="item-intro text-muted"> Todas as peças cadastradas </p>
+                                    <h2 class="text-uppercase">Consultar clientes</h2>
+                                    <p class="item-intro text-muted"> Todas os cadastros dos clientes </p>
                                     <div class="container px-4 px-lg-5 mt-5">
-                                        <div id="estoque" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
+                                        <div id="cliente" class="row gx-3 gx-lg-4 row-cols-2 row-cols-md-2 row-cols-xl-2 justify-content-center">        
                                             <script type="text/javascript">
-                                                function getEstoque() {
+                                                function getClientes() {
 
                                                     $.ajax({
                                                         dataType:"json",
-                                                        url:"getEstoque.php", 
+                                                        url:"getClientes.php", 
                                                         type: "GET",
                                                         success:function(result){
 
-                                                            if (result.mensagem == "Nenhum item encontrado") {
+                                                            if (result.mensagem == "Nenhum cliente encontrado") {
                                                                 `
                                                                 <div>
-                                                                    ${document.getElementById("estoque").innerHTML = result.mensagem }
+                                                                    ${document.getElementById("cliente").innerHTML = result.mensagem }
                                                                 </div>
                                                                 `
 
@@ -360,22 +360,24 @@ include('verifica_perfil_adm.php');
                                                                     <div class="col-lg-4 mb-5">
                                                                         <div class="card h-100 shadow border-0">
                                                                             <div class="card-header p-3">
-                                                                                <h5 class="fw-bold">${cliArray[i]['nomePeca']}</h5>
+                                                                                <h5 class="fw-bold">${cliArray[i]['cli_id']}</h5>
                                                                             </div>
                                                                             <div class="card-body">
-                                                                                    <p class="card-text mb-0">${cliArray[i]['descPeca']}</p>
+                                                                                    <p class="card-text mb-0">${cliArray[i]['nomeCli']}</p>
                                                                             </div>
                                                                             <div class="card-footer align-items-end p-4 pt-0 bg-transparent border-top-0">
                                                                                 <div class="small">
-                                                                                    <div class="text-muted"><b>Código da peça:</b> ${cliArray[i]['codPeca']}</div>
-                                                                                    <div class="text-muted"><b>Quantidade:</b> ${cliArray[i]['qtdPeca']}</div>
+                                                                                    <div class="text-muted"><b>Endereço:</b> ${cliArray[i]['endCli']}</div>
+                                                                                    <div class="text-muted"><b>Nº:</b> ${cliArray[i]['numeroEndCli']}</div>
+                                                                                    <div class="text-muted"><b>Telefone:</b> ${cliArray[i]['telCli']}</div>
+                                                                                    <div class="text-muted"><b>Celular:</b> ${cliArray[i]['celCli']}</div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     `;   
                                                                 }
-                                                                document.getElementById("estoque").innerHTML = varInfo;
+                                                                document.getElementById("cliente").innerHTML = varInfo;
                                                             }
                                                         }
                                                     });
