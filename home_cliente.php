@@ -34,7 +34,7 @@ include('verifica_perfil_usr.php');
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalCadCli">Novo cliente</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAddCli">Adicionar</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAltCli">Alterar</a></li> -->
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemCli">Remover</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConCliente">Consultar clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
@@ -67,21 +67,22 @@ include('verifica_perfil_usr.php');
                             </div>
                         </div>
                     </div>
+<!--
                     <div class="col-lg-4 col-sm-6 mb-4">
-                        <!-- Portfolio item 2-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAddCli">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#modalAltCli">
                                 <div class="portfolio-hover">
                                     <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
                                 </div>
                                 <img class="img-fluid" src="img/addItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Adicionar</div>
-                                <div class="portfolio-caption-subheading text-muted">Adicionar peças ao estoque</div>
+                                <div class="portfolio-caption-heading">Alterar</div>
+                                <div class="portfolio-caption-subheading text-muted">Alterar cadastro do cliente</div>
                             </div>
                         </div>
                     </div>
+-->
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
@@ -93,7 +94,7 @@ include('verifica_perfil_usr.php');
                             </a>
                             <div class="portfolio-caption">
                                 <div class="portfolio-caption-heading">Remover</div>
-                                <div class="portfolio-caption-subheading text-muted">Remover cadastro do cliente</div>
+                                <div class="portfolio-caption-subheading text-muted">Remover cadastro dos clientes</div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +120,7 @@ include('verifica_perfil_usr.php');
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Univesp - PI Grupo 003 - Sala 006 - 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Univesp - PI Grupo 3 - Sala 6 - 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="https://twitter.com/univespoficial"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com/univespoficial/"><i class="fab fa-facebook-f"></i></a>
@@ -207,8 +208,9 @@ include('verifica_perfil_usr.php');
                 </div>
             </div>
         </div>
-        <!-- Portfolio item 2 modal popup-->
-        <div class="portfolio-modal modal fade" id="modalAddCli" tabindex="-1" role="dialog" aria-hidden="true">
+
+<!--
+        <div class="portfolio-modal modal fade" id="modalAltCli" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="close-modal" data-bs-dismiss="modal"><img src="img/close-icon.svg" alt="Close modal" /></div>
@@ -216,33 +218,27 @@ include('verifica_perfil_usr.php');
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="modal-body">
-                                    <!-- Project details-->
-                                    <h2 class="text-uppercase">Adicionar</h2>
+                                    <h2 class="text-uppercase">Alterar</h2>
                                     
-                                    <p class="item-intro text-muted">Adicionar peças ao estoque</p>
+                                    <p class="item-intro text-muted">Alterar cadastro do cliente</p>
                                     <div class="container px-5 my-5">
-                                        <form id="AddCliForm" method="post" action="home_cliente.php">
+                                        <form id="AltCliForm" method="post" action="home_cliente.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="codPecaAdd" name="codPecaAdd" type="text" placeholder="codPecaAdd" required/>
-                                                <label for="codPecaAdd">Código da peça</label>
-                                                <div class="invalid-feedback">Informe o código da peça</div>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="qtdPecaAdd" name="qtdPecaAdd" type="text" placeholder="qtdPecaAdd" required/>
-                                                <label for="qtdPecaAdd">Quantidade</label>
-                                                <div class="invalid-feedback">Insira a quantidade a ser inserida</div>
+                                                <input class="form-control" id="codCliAlt" name="codCliAlt" type="text" placeholder="codCliAlt" required/>
+                                                <label for="codPecaAdd">Código do cliente</label>
+                                                <div class="invalid-feedback">Informe o código do cliente</div>
                                             </div>
                                             <div class="d-grid">
-                                                <input class="btn btn-primary btn-lg" id="submitAddCli" name ="submitAddCli" value="Adicionar" type="submit" onclick="AddCli()">
+                                                <input class="btn btn-primary btn-lg" id="submitAltCli" name ="submitAltCli" value="Alterar" type="submit" onclick="AltCliente()">
                                                 <script type="text/javascript" >
-                                                    function AddCli() {
+                                                    function AltCliente() {
                                                         $.ajax({
                                                             //METODO DE ENVIO
                                                             type: "POST",
                                                             //URL PARA QUAL OS DADOS SERÃO ENVIADOS
-                                                            url: "/AddCli.php",
+                                                            url: "/AltCliente.php",
                                                             //DADOS QUE SERÃO ENVIADOS
-                                                            data: $("#AddCliForm").serialize(),
+                                                            data: $("#AltCliForm").serialize(),
                                                             //TIPOS DE DADOS QUE O AJAX TRATA
                                                             dataType: "json",
                                                             success: function(){
@@ -264,6 +260,7 @@ include('verifica_perfil_usr.php');
                 </div>
             </div>
         </div>
+-->
         <!-- Portfolio item 3 modal popup-->
         <div class="portfolio-modal modal fade" id="modalRemCli" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
