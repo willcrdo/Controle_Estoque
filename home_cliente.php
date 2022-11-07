@@ -35,7 +35,7 @@ include('verifica_perfil_usr.php');
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalCadCli">Novo cliente</a></li>
 <!--                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalAltCli">Alterar</a></li> -->
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemCli">Remover</a></li>
+                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalRemCli">Remover cliente</a></li>
                         <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" href="#modalConCliente">Consultar clientes</a></li>
                         <li class="nav-item"><a class="nav-link" href="logout.php">Sair</a></li>
                     </ul>
@@ -93,7 +93,7 @@ include('verifica_perfil_usr.php');
                                 <img class="img-fluid" src="img/removeItem.png" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">Remover</div>
+                                <div class="portfolio-caption-heading">Remover cliente</div>
                                 <div class="portfolio-caption-subheading text-muted">Remover cadastro dos clientes</div>
                             </div>
                         </div>
@@ -271,7 +271,7 @@ include('verifica_perfil_usr.php');
                             <div class="col-lg-8">
                                 <div class="modal-body">
                                     <!-- Project details-->
-                                    <h2 class="text-uppercase">Remover</h2>
+                                    <h2 class="text-uppercase">Remover cliente</h2>
                                     
                                     <p class="item-intro text-muted">Remover cadastro do cliente</p>
                                     <div class="container px-5 my-5">
